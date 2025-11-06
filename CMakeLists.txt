@@ -12,6 +12,7 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(Pacman src/main.cpp)
+add_executable(Pacman src/main.cpp src/Pacman.cpp)
 target_compile_features(Pacman PRIVATE cxx_std_17)
 target_link_libraries(Pacman PRIVATE SFML::Graphics)
+target_include_directories(Pacman PRIVATE ${PROJECT_SOURCE_DIR}/headers)
