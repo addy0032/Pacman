@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
 class Pacman{
@@ -12,8 +13,8 @@ class Pacman{
     public:
         Pacman(float x, float y);
 
-        void handleInput(float screenWidth);
         void updateInput();
-        void update();
+        void updateWindowBoundsCollision(const sf::RenderWindow* window);
+        void update(const sf::RenderWindow* window);
         void render(sf::RenderWindow* window);
 };

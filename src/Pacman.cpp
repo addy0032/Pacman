@@ -18,30 +18,51 @@ Pacman::Pacman(float x, float y)
 
 void Pacman::updateInput()
 {
-    // Keyboard Input
-    //Left
+    // Left
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)){
         this->pacman.move({-this->movementSpeed, 0.f});
     }
+    // Right
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)){
         this->pacman.move({this->movementSpeed, 0.f});
     }
+    // Up
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)){
         this->pacman.move({0.f, -this->movementSpeed});
     }
+    // Down
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)){
         this->pacman.move({0.f, this->movementSpeed});
     }
 }
 
-void Pacman::update()
+void Pacman::updateWindowBoundsCollision(const sf::RenderWindow *window)
 {
+    // Left
+    if (this->pacman.getPosition().x <= 0.f){
+        this->pacman.setPosition({0.f, this->pacman.getPosition().y});
+    }
+    if (this->pacman.getPosition().x + 13.f >= window->getView().getSize().x){
+        this->pacman.setPosition({window->getView().getSize().x - 13.f, this->pacman.getPosition().y});
+    }
+    if (this->pacman.getPosition().y <= 0.f){
+        this->pacman.setPosition({this->pacman.getPosition().x, 0.f});
+    }
+    if (this->pacman.getPosition().y + 13.f >= window->getView().getSize().y){
+        this->pacman.setPosition({this->pacman.getPosition().x, window->getView().getSize().y - 13.f});
+    }
+}
 
+void Pacman::update(const sf::RenderWindow* window)
+{
+    // Keyboard input
     this->updateInput();
+
+    // Window bounds collision
+    this->updateWindowBoundsCollision(window);
 }
 
 void Pacman::render(sf::RenderWindow *window)
 {
-    this->update();
     window->draw(pacman);
 }

@@ -23,6 +23,7 @@ int main()
 
         window.clear(sf::Color::Black);
         
+        pacman.update(&window);
         pacman.render(&window);
 
         window.display();
