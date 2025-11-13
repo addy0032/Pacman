@@ -5,7 +5,7 @@ void Pacman::initVariables()
     this->movementSpeed = 2.5f;
 }
 
-Pacman::Pacman(float x, float y)
+Pacman::Pacman(float x = 100.f, float y = 100.f)
     : pacman(this->texture)
 {   
     initVariables();
@@ -58,7 +58,7 @@ void Pacman::update(const sf::RenderWindow* window)
     // Keyboard input
     this->updateInput();
 
-    // Window bounds collision
+    // Update collision with window bounds
     this->updateWindowBoundsCollision(window);
 }
 
