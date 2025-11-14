@@ -6,7 +6,7 @@ class Pacman{
     private:
         sf::Texture texture;
         sf::Sprite pacman;
-
+        
         float movementSpeed;
 
         void initVariables();
@@ -15,6 +15,7 @@ class Pacman{
 
         void updateInput();
         void updateWindowBoundsCollision(const sf::RenderWindow* window);
+        void updateTileCollision();
         void update(const sf::RenderWindow* window);
         void render(sf::RenderWindow* window);
 };

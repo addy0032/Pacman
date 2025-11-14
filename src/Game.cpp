@@ -2,7 +2,7 @@
 
 void Game::initWindow()
 {
-    unsigned int SCREEN_WIDTH = 384u, SCREEN_HEIGHT = 216u;
+    unsigned int SCREEN_WIDTH = 224u * 4u, SCREEN_HEIGHT = 248u * 4u;
     this->videoMode = sf::VideoMode({SCREEN_WIDTH, SCREEN_HEIGHT});
     this->window = new sf::RenderWindow(this->videoMode, "Pacman");
     this->window->setFramerateLimit(60);
@@ -11,9 +11,10 @@ void Game::initWindow()
 
 // Constructors and destructors
 Game::Game()
-    : pacman(100.f, 100.f)
+    : pacman(100.f, 100.f), map("Assets/map.txt", this->tilesheet)
 {
     this->initWindow();
+    static_cast<void>(this->tilesheet.loadFromFile("Assets/map28x29.png"));
 }
 
 Game::~Game()
@@ -50,6 +51,7 @@ void Game::update()
 void Game::render()
 {
     this->window->clear(sf::Color::Black);
+    this->map.render(this->window);
 
     // Render stuff
     this->pacman.render(this->window);

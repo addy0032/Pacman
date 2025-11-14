@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Pacman.h"
-
+#include "TileMap.h"
 class Game{
     private:
         sf::VideoMode videoMode;
@@ -9,6 +9,8 @@ class Game{
         std::optional<sf::Event> sfmlEvent;
 
         Pacman pacman;
+        TileMap map;
+        sf::Texture tilesheet;
 
         void initWindow();
 
